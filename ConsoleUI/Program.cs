@@ -1,6 +1,9 @@
-﻿using Business.Concrete;
+﻿using System;
+using Business.Concrete;
+using DataAccess.Concrete.Entity_Framework;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
-using System;
+using Entities.Concrete;
 
 namespace ConsoleUI
 {
@@ -8,15 +11,22 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new InMemoryCarDal());
+            CarManager carManager = new CarManager(new EfCarDal());
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            ColorManager colorManager = new ColorManager(new EfColorDal());
 
-
-            foreach (var car in carManager.GetAll()) 
+            //foreach (var car in carManager.GetAll())
+            //{
+            //    Console.WriteLine(car.Description);
+            //}
+            //Car car = new Car {BrandId = 1, ColorId = 1, DailyPrice = 100,  ModelYear = 2018};
+            //carManager.Add(car);
+            foreach (var color in colorManager.GetAll())
             {
-                Console.WriteLine("----BY YOKSUL RENT A CAR--- \n ---Araç Özellikleri---" );
-                Console.WriteLine("AraçID:" + car.CarId + "MarkaID:" + car.BrandId + "Renk:" + car.ColorId + "Model Yılı:" + car.ModelYear + "Günlük Fiyatı:" + car.DailyPrice + "Açıklama:" + car.Description);
-
+                Console.WriteLine(color.ColorName);
+                
             }
+
 
         }
     }

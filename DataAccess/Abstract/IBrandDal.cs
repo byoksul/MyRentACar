@@ -5,12 +5,9 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    //Ürünle igili VeriTabanında yapacağım operasyonlar.
-
-    public interface ICarDal: IEntityRepository<Car>
+    public interface IBrandDal:IEntityRepository<Brand>
     {
-        
+
 
     }
-
 }
