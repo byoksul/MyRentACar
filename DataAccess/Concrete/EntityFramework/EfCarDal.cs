@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, CarContext>, ICarDal
     {
-        public List<CarDetailDto> GetCarDetails()
+        public List<CarDetailDto> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
             using (CarContext context = new CarContext())
             {
@@ -27,7 +27,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  CarName = c.CarName, 
                                  BrandName = a.BrandName, 
                                  ColorName = x.ColorName, 
-                                 DailyPrice=c.DailyPrice 
+                                 DailyPrice= (int)c.DailyPrice 
                              };
                 return result.ToList();
 

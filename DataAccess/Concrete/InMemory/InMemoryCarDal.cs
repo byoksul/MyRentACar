@@ -15,11 +15,11 @@ namespace DataAccess.Concrete.InMemory
         public InMemoryCarDal()
         {
             _cars = new List<Car> {
-                new Car{CarId=1, BrandId=5, ColorId=1, DailyPrice=200, ModelYear=2016, Description="Ford Focus"},
-                new Car{CarId=2, BrandId=4, ColorId=2, DailyPrice=500, ModelYear=2017, Description="Renault Symbol"},
-                new Car{CarId=3, BrandId=3, ColorId=1, DailyPrice=1000, ModelYear=2021, Description="Mercedes"},
-                new Car{CarId=4, BrandId=2, ColorId=2, DailyPrice=100, ModelYear=2010, Description="Golf"},
-                new Car{CarId=5, BrandId=1, ColorId=1, DailyPrice=250, ModelYear=2019, Description="Volkswagen Jetta"},
+                new Car{CarId=1, BrandId=5, ColorId=1, DailyPrice=200, ModelYear="2016", Descriptions="Ford Focus"},
+                new Car{CarId=2, BrandId=4, ColorId=2, DailyPrice=500, ModelYear="2017", Descriptions="Renault Symbol"},
+                new Car{CarId=3, BrandId=3, ColorId=1, DailyPrice=1000, ModelYear="2021", Descriptions="Mercedes"},
+                new Car{CarId=4, BrandId=2, ColorId=2, DailyPrice=100, ModelYear="2010", Descriptions="Golf"},
+                new Car{CarId=5, BrandId=1, ColorId=1, DailyPrice=250, ModelYear="2019", Descriptions="Volkswagen Jetta"},
 
 
 
@@ -61,7 +61,7 @@ namespace DataAccess.Concrete.InMemory
 
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public List<CarDetailDto> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
             throw new NotImplementedException();
         }
@@ -73,7 +73,7 @@ namespace DataAccess.Concrete.InMemory
             carToUpdate.BrandId = car.BrandId;
             carToUpdate.ColorId = car.ColorId;
             carToUpdate.DailyPrice = car.DailyPrice;
-            carToUpdate.Description = car.Description;
+            carToUpdate.Descriptions = car.Descriptions;
             carToUpdate.ModelYear = car.ModelYear;
 
             Console.WriteLine(carToUpdate.CarId + "Araç Güncellendi.");
