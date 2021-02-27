@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -13,19 +15,17 @@ namespace Business.Concrete
     public class ColorManager : IColorService
     {
         IColorDal _colorDal;
-        public ColorManager(IColorDal color)
-        {
-            _colorDal = color;
 
+        public ColorManager(IColorDal brandDal)
+        {
+            _colorDal = brandDal;
         }
 
-        public IResult Add(Color color)
+        [ValidationAspect(typeof(ColorValidator))]
+        public IResult Add(Color entity)
         {
-
-            _colorDal.Add(color);
+            _colorDal.Add(entity);
             return new SuccessResult(Messages.AddedColor);
-
-           
         }
 
         public IResult Delete(Color color)
@@ -37,22 +37,20 @@ namespace Business.Concrete
 
         public IDataResult<List<Color>> GetAll()
         {
-           return new SuccessDataResult<List<Color>>( _colorDal.GetAll());
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
 
         }
 
         public IDataResult<Color> GetById(int id)
         {
-            return new SuccessDataResult<Color>( _colorDal.Get(x => x.ColorId == id));
-
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == id));
         }
 
-        public IResult Update(Color color)
+        [ValidationAspect(typeof(ColorValidator))]
+        public IResult Update(Color entity)
         {
-            
-            _colorDal.Update(color);
+            _colorDal.Update(entity);
             return new SuccessResult(Messages.UpdatedColor);
-
 
         }
     }
