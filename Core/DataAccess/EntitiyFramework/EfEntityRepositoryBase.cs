@@ -10,7 +10,7 @@ namespace Core.DataAccess.EntitiyFramework
 {
     public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
         where TEntity : class, IEntity, new()
-        where TContext : DbContext,new()
+        where TContext : DbContext, new()
     {
         public void Add(TEntity entity)
         {
@@ -19,8 +19,6 @@ namespace Core.DataAccess.EntitiyFramework
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
                 context.SaveChanges();
-
-
             }
         }
 
@@ -31,8 +29,6 @@ namespace Core.DataAccess.EntitiyFramework
                 var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
                 context.SaveChanges();
-
-
             }
         }
 
@@ -41,7 +37,6 @@ namespace Core.DataAccess.EntitiyFramework
             using (TContext context = new TContext())
             {
                 return context.Set<TEntity>().SingleOrDefault(filter);
-
             }
         }
 
@@ -49,10 +44,7 @@ namespace Core.DataAccess.EntitiyFramework
         {
             using (TContext context = new TContext())
             {
-                return filter == null
-                    ? context.Set<TEntity>().ToList()
-                    : context.Set<TEntity>().Where(filter).ToList();
-
+                return filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(filter).ToList();
             }
         }
 
@@ -63,9 +55,8 @@ namespace Core.DataAccess.EntitiyFramework
                 var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;
                 context.SaveChanges();
-
-
             }
         }
     }
+
 }
