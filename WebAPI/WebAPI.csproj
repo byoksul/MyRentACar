@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.11" />
   </ItemGroup>
 
   <ItemGroup>
@@ -13,6 +14,13 @@
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\40bd7c11-82fb-45d4-a349-c9155994fb03_2_27_2021.jpg" />
+    <None Include="wwwroot\Images\5f43c202-f26e-4fed-a375-753b1d302527_2_27_2021.jpg" />
+    <None Include="wwwroot\Images\9017bfcc-a6c3-4cd4-8ebe-5bbd30e6eb49_2_27_2021.jpg" />
+    <None Include="wwwroot\Images\logo.jpg" />
   </ItemGroup>
 
 

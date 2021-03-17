@@ -1,4 +1,5 @@
 ﻿using Business.Constants;
+using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -36,7 +37,17 @@ namespace Business.Concrete
 
         public IDataResult<User> GetById(int id)
         {
-            return new SuccessDataResult<User>(_userDal.Get(I => I.UserId == id));
+            return new SuccessDataResult<User>(_userDal.Get(I => I.Id == id));
+        }
+
+        public User GetByMail(string email)
+        {
+            return _userDal.Get(u => u.Email == email);
+        }
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _userDal.GetClaims(user);
         }
 
         public IResult Update(User user)
@@ -44,5 +55,7 @@ namespace Business.Concrete
             _userDal.Update(user);
             return new SuccessResult(Messages.UpdatedColor);
         }
+
     }
+
 }

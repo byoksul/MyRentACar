@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess;
+using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Entities.Concrete;
 using System;
@@ -15,5 +16,7 @@ namespace DataAccess.Abstract
         IResult Update(User user);
         IDataResult<List<User>> GetAll();
         IDataResult<User> GetById(int id);
+        List<OperationClaim> GetClaims(User user);
+        User GetByMail(string email);
     }
 }
